@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { FaComments, FaTimes } from 'react-icons/fa'; // Icons for the chat button
 
 const ChatBot = () => {
   // State to manage the messages
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
+  const [isOpen, setIsOpen] = useState(false); // State to manage the visibility of the chatbot
 
   // Predefined responses from the chatbot
   const botResponses = {
@@ -33,49 +35,77 @@ const ChatBot = () => {
     setUserInput(''); // Clear the input field
   };
 
+  // Toggle the chatbot visibility
+  const toggleChatbot = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="fixed bottom-10 right-10 w-80 bg-white shadow-lg rounded-lg">
-      {/* Chat Header */}
-      <div className="bg-blue-500 text-white text-center py-2 rounded-t-lg font-semibold">
-        MovieWorld Chatbot
-      </div>
-
-      {/* Chat Body */}
-      <div className="h-64 p-4 overflow-y-auto">
-        {messages.length === 0 && (
-          <p className="text-gray-500 text-center">
-            Hello! Ask me anything about movies or booking tickets.
-          </p>
-        )}
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`my-2 p-2 max-w-xs rounded-lg ${
-              msg.sender === 'user' ? 'bg-blue-100 ml-auto' : 'bg-gray-100'
-            }`}
-          >
-            {msg.text}
-          </div>
-        ))}
-      </div>
-
-      {/* Chat Input */}
-      <div className="flex p-2 border-t">
-        <input
-          type="text"
-          className="flex-1 border rounded-lg p-2 focus:outline-none"
-          placeholder="Type a message..."
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-        />
+    <div className="fixed bottom-5 right-5 z-50">
+      {/* Chat icon button */}
+      {!isOpen && (
         <button
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-          onClick={handleSendMessage}
+          className="bg-blue-500 text-white p-4 rounded-full shadow-lg focus:outline-none hover:bg-blue-600 transition-all"
+          onClick={toggleChatbot}
         >
-          Send
+          <FaComments size={24} />
         </button>
-      </div>
+      )}
+
+      {/* ChatBot window */}
+      {isOpen && (
+        <div className="relative w-80 h-auto sm:w-96 bg-white shadow-lg rounded-lg">
+          {/* Close Button */}
+          <button
+            className="absolute top-2 right-2 text-red-500 hover:text-red-600 focus:outline-none"
+            onClick={toggleChatbot}
+          >
+            <FaTimes size={20} />
+          </button>
+
+          {/* Chat Header */}
+          <div className="bg-blue-500 text-white text-center py-2 rounded-t-lg font-semibold">
+            MovieWorld Chatbot
+          </div>
+
+          {/* Chat Body */}
+          <div className="h-64 p-4 overflow-y-auto">
+            {messages.length === 0 && (
+              <p className="text-gray-500 text-center">
+                Hello! Ask me anything about movies or booking tickets.
+              </p>
+            )}
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`my-2 p-2 max-w-xs rounded-lg ${
+                  msg.sender === 'user' ? 'bg-blue-100 ml-auto' : 'bg-gray-100'
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+
+          {/* Chat Input */}
+          <div className="flex p-2 border-t">
+            <input
+              type="text"
+              className="flex-1 border rounded-lg p-2 focus:outline-none"
+              placeholder="Type a message..."
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+            />
+            <button
+              className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              onClick={handleSendMessage}
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
