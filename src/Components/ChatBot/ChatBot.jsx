@@ -65,7 +65,7 @@ const ChatBot = () => {
 
           {/* Chat Header */}
           <div className="bg-blue-500 text-white text-center py-2 rounded-t-lg font-semibold">
-            MovieWorld Chatbot
+            Jugad Show Chatbot
           </div>
 
           {/* Chat Body */}
