@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ChatBot from '../ChatBot/ChatBot';
 
 // Sample list of movies
 const movies = [
@@ -39,7 +40,7 @@ const Home = () => {
       >
         <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0"></div>
         <div className="relative z-10 text-white">
-          <h1 className="text-4xl font-bold mb-4">Welcome to MovieWorld</h1>
+          <h1 className="text-4xl font-bold mb-4">Welcome to Jugad Show</h1>
           <p className="text-xl">Discover the latest movies and shows!</p>
           <div className="mt-6">
             <input
@@ -52,7 +53,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      <ChatBot/>
       {/* Popular Movies Section */}
       <div className="mt-10 px-4 sm:px-8 lg:px-12">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Search Results</h2>
