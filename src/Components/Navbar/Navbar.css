@@ -1,0 +1,6 @@
+/* In your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+
+nav {
+    font-family: 'Protest Strike', sans-serif;
+}

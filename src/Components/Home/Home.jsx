@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ChatBot from '../ChatBot/ChatBot';
+import Navbar from '../Navbar/Navbar';
 
 // Sample list of movies
 const movies = [
@@ -32,7 +33,11 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <>
+   <Navbar isDarkBackground={true} />  
+<Navbar isDarkBackground={false} /> 
+
+    <div className="bg-gray-100 min-h-screen pt-16">
       {/* Hero Section */}
       <div
         className="relative h-[50vh] bg-cover bg-center flex items-center justify-center text-center"
@@ -78,6 +83,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
